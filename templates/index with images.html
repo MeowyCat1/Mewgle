@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+>
+    <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.colors.min.css"
+>
+    <title>Mewgle</title>
+
+</head>
+<body class="pico-background-pink-250">
+  <header class="container pico-background-pink-250">
+    <h1>Mewgle Search</h1>
+    <h2>Your Destination for all things furry and purry!</h2>
+  </header>
+  <main class="container pico-background-pink-250">
+  <form method="post" action="{{url_for('search')}}">
+    <input type="search", name="textbox", class="pico-background-purple-50", title="Search Cats">
+  </form>
+  {% for breed in breeds %}
+    <article class="pico-background-pink-350">
+    <header class="pico-background-pink-350 pico-color-white-50">{{breed.name}}</header>
+    <a href= {{["/cat/",breed.name]|join}}>
+        {% if breed.image is defined %}
+            <img src={{breed.image.url}} alt="{{breed.name}}">
+        {% endif %}
+    </a>
+    </article>
+  {% endfor %}
+  </main>
+</body>
+</html>

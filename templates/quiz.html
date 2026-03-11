@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" class="pico-background-pink-150">
+<head class="pico-background-pink-150">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Cat Quiz!</title>
+    <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+>
+    <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.colors.min.css"
+>
+<link rel="icon" href={{url_for("static", filename="icon.png")}}>
+<script src="/static/quiz.js" async></script>
+</head>
+<body class="pico-background-pink-150">
+  <a href="/">
+      <img src={{url_for('static', filename='logo.png')}} alt="Homepage" style="padding: 20px 0px;">
+    </a>
+      <quizzo-web-comp
+      json-file="/quizdata" 
+      name="Cats Quiz"
+    />
+
+</body>

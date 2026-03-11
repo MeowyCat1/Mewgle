@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{cat.name}}</title>
+    <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.purple.min.css"
+>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.colors.min.css"
+>
+<link rel="icon" href={{url_for("static", filename="icon.png")}}>
+</head>
+<body class="pico-background-pink-150">
+  <main class="container pico-background-pink-150">
+    <a href="/" style="padding: 20px 0px;">
+      <img src={{url_for('static', filename='logo.png')}} alt="Homepage">
+  </a>
+      <h1>{{cat.name}}</h1>
+      <article class="pico-background-pink-250"><img src={{cat.image.url}} alt={{cat.name}}></article>
+      <article class="pico-background-pink-250">
+        <header class="pico-background-pink-250">About</header>
+        <p>{{cat.description}}</p>
+      </article>
+      <article class="pico-background-pink-250">
+        <header class="pico-background-pink-250">More Info</header>
+        <p>The {{cat.name}} comes from {{cat.origin}}</p>
+      </article>
+      <article class="pico-background-pink-250">
+        <header class="pico-background-pink-250">Stats</header>
+        <h3>Intelligence</h3>
+        <p>{% for star in range(cat.intelligence) %}⭐️{% endfor %}</p>
+        <h3>Child Friendliness</h3>
+        <p>{% for star in range(cat.child_friendly) %}⭐️{% endfor %}</p>
+        <h3>Affection Level</h3>
+        <p>{% for star in range(cat.affection_level) %}⭐️{% endfor %}</p>
+        <h3>Social Needs</h3>
+        <p>{% for star in range(cat.social_needs) %}⭐️{% endfor %}</p>
+        <h3>Chattiness</h3>
+        <p>{% for star in range(cat.vocalisation) %}⭐️{% endfor %}</p>
+        <h3>Adaptability</h3>
+        <p>{% for star in range(cat.adaptability) %}⭐️{% endfor %}</p>
+      </article>
+      <article class="pico-background-pink-250">
+        <header class="pico-background-pink-250">Lifespan</header>
+        <p>{{cat.life_span}} years</p>
+      </article>
+      <article class="pico-background-pink-250">
+        <header class="pico-background-pink-250">Weight</header>
+        <p>{{cat.weight.metric}} kg</p>
+        <p>{{cat.weight.imperial}} lbs</p>
+      </article>
+      {% if cat.alt_names | length > 0%}
+      <article class="pico-background-pink-250">
+        <header class="pico-background-pink-250">Other Names</header>
+        <p>{{cat.alt_names}}</p>
+      </article>
+      {% endif %}
+
+  </main>
+</body>
+</html>
