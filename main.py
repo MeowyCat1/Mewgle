@@ -1,13 +1,15 @@
 from flask import Flask
-from flask import render_template, send_file
-from io import BytesIO
+from flask import render_template
 from flask import request
 import requests
 import countryflag
 import random
-from json import dumps
+from dotenv import load_dotenv
+import os
 
-api_key = "live_B0PU6xsRI8lJcFsL2YDuS0LaH93gjN0zNnqPCY9l2GqlYSFRwghcOGzwn3Ko0H2t"
+load_dotenv()
+api_key = os.getenv("API_KEY")
+
 
 app = Flask(__name__)
 
@@ -50,7 +52,7 @@ def quizdata():
         catoptions = incorrectcats
         catoptions.append(catchosen["name"])
         random.shuffle(catoptions)
-        quiz.append({"que" : catchosen["temperament"], "opt" : catoptions, "ans" : catoptions.index(catchosen["name"]) + 1})
+        quiz.append({"que" : f"Which cat can be described as {catchosen["temperament"]}?", "opt" : catoptions, "ans" : catoptions.index(catchosen["name"]) + 1})
     return quiz
 
 
@@ -58,5 +60,4 @@ def quizdata():
 
 
 if __name__ == "__main__":
-
     app.run(host="0.0.0.0", port=80)
