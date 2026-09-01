@@ -24,9 +24,9 @@ def search():
     cats = requests.get("https://api.thecatapi.com/v1/breeds/search", params= {"api_key":api_key, "q":query}).json()
     for cat in cats:
         try:
-            cat["nameflag"] = cat["name"] + " " + countryflag.getflag(cat["origin"])
+            cat["nameflag"] = cat["name"] + " " + countryflag.getflag(cat["country_code"])
         except:
-            pass
+            cat["nameflag"] = cat["name"]
     return render_template("search.html", query = query, cats = cats)
 
     

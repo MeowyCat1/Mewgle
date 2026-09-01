@@ -20,15 +20,21 @@
       <img src={{url_for('static', filename='logo.png')}} alt="Homepage">
   </a>
       <h1>{{cat.name}}</h1>
-      <article class="pico-background-pink-250"><img src={{cat.image.url}} alt={{cat.name}}></article>
+      {% if cat.image is defined%}<article class="pico-background-pink-250"><img src={{cat.image.url}} alt={{cat.name}}></article>{% endif %}
       <article class="pico-background-pink-250">
         <header class="pico-background-pink-250">About</header>
         <p>{{cat.description}}</p>
       </article>
+      {#
       <article class="pico-background-pink-250">
         <header class="pico-background-pink-250">More Info</header>
-        <p>The {{cat.name}} comes from {{cat.origin}}</p>
+        Sadly the API does not reliably return the correct data for the origin,
+          and sometimes randomly returns information on the vocalisations of the cat.
+          This is a problem on the side of the API.
+          <p>The {{cat.name}} comes from {{cat.origin}}</p>
       </article>
+      #}
+       {# Removed due to API change 😢, This is a Jinja comment to prevent the server from trying to parse this
       <article class="pico-background-pink-250">
         <header class="pico-background-pink-250">Stats</header>
         <h3>Intelligence</h3>
@@ -44,6 +50,7 @@
         <h3>Adaptability</h3>
         <p>{% for star in range(cat.adaptability) %}⭐️{% endfor %}</p>
       </article>
+    #}
       <article class="pico-background-pink-250">
         <header class="pico-background-pink-250">Lifespan</header>
         <p>{{cat.life_span}} years</p>
